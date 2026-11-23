@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEON BOXING: CHAMPIONSHIP EDITION</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="arena-wrapper">
+        <!-- Верхняя HUD панель -->
+        <div class="hud">
+            <div class="fighter-hud player-hud">
+                <div class="name-row">
+                    <span id="player-display-name" class="fighter-name">ИГРОК</span>
+                    <span id="p-hp-text" class="hp-val">100%</span>
+                </div>
+                <div class="bar-bg"><div id="p-hp" class="bar-fill hp-blue"></div></div>
+                <div class="stamina-bg"><div id="p-stamina" class="bar-fill stamina"></div></div>
+                <div class="info-row">
+                    <span class="combo-indicator" id="p-combo">КОМБО: x0</span>
+                    <span class="aura-active" id="p-aura-status">АУРА: НЕТ</span>
+                </div>
+            </div>
+
+            <div class="vs-badge">VS</div>
+
+            <div class="fighter-hud enemy-hud">
+                <div class="name-row">
+                    <span id="e-hp-text" class="hp-val">100%</span>
+                    <span id="enemy-display-name" class="fighter-name">ЛОКО</span>
+                </div>
+                <div class="bar-bg"><div id="e-hp" class="bar-fill hp-red"></div></div>
+                <div class="stamina-bg"><div id="e-stamina" class="bar-fill stamina"></div></div>
+                <div class="info-row">
+                    <span class="boss-lvl" id="boss-level-text">БОСС 1 / 10</span>
+                    <span class="combo-indicator" id="e-combo">КОМБО: x0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Игровой холст -->
+        <div class="canvas-container">
+            <canvas id="ringCanvas" width="760" height="400"></canvas>
+            
+            <!-- Оверлей меню / побед / магазинов -->
+            <div id="overlay" class="overlay">
+                <h1 id="overlay-title">NEON BOXING</h1>
+                <p id="overlay-subtitle">Пройди путь от новичка до чемпиона против 10 боссов!</p>
+                
+                <div id="name-input-section" class="menu-section">
+                    <input type="text" id="fighter-name-input" placeholder="Введите ваше имя..." maxlength="12" value="Чемпион">
+                    <button id="save-name-btn">СОХРАНИТЬ ИМЯ</button>
+                </div>
+
+                <div id="main-menu-buttons" class="menu-section hidden">
+                    <div class="stats-card">
+                        <span>Баланс: <strong id="player-money" style="color:#ffd700;">$100</strong></span> | 
+                        <span>Этап: <strong id="player-stage" style="color:#00f0ff;">1 / 10</strong></span>
+                    </div>
+                    <button id="start-fight-btn" class="main-menu-btn">В БОЙ НА РИНГ!</button>
+                    <button id="open-shop-btn" class="shop-menu-btn">МАГАЗИН ПАКОВ АУР</button>
+                    <button id="change-name-btn" class="sub-btn">Сменить имя</button>
+                </div>
+
+                <div id="shop-section" class="menu-section hidden">
+                    <h2>МАГАЗИН ПАКОВ АУР</h2>
+                    <p>Открывай паки и получай крутые ауры с уникальными эффектами!</p>
+                    <div class="shop-container">
+                        <div class="pack-card">
+                            <h3>⚡ НЕОНОВЫЙ ПАК</h3>
+                            <p>Шансы: Кибер (5%), Золото (15%), Огонь (30%), Лёд (50%)</p>
+                            <button id="buy-pack-btn" class="buy-btn">КУПИТЬ ПАК ($50)</button>
+                        </div>
+                    </div>
+                    <div id="inventory-box">
+                        <h4>Ваши ауры:</h4>
+                        <div id="inventory-list">Пусто</div>
+                    </div>
+                    <button id="close-shop-btn" class="sub-btn">НАЗАД В МЕНЮ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Экранные кнопки управления -->
+        <div class="onscreen-controls">
+            <div class="control-group">
+                <button class="action-btn" id="btn-left">◀ ХОДИТЬ</button>
+                <button class="action-btn" id="btn-right">ХОДИТЬ ▶</button>
+            </div>
+            <div class="control-group">
+                <button class="action-btn punch-jab" id="btn-jab">ДЖЕБ (J)</button>
+                <button class="action-btn punch-hook" id="btn-hook">ХУК (K)</button>
+                <button class="action-btn punch-uppercut" id="btn-upper">АППЕР (U)</button>
+                <button class="action-btn aura-btn" id="btn-aura">АУРА (E)</button>
+                <button class="action-btn def-dash" id="btn-dash">РЫВОК (SPC)</button>
+                <button class="action-btn def-block" id="btn-block">БЛОК (S)</button>
+            </div>
+        </div>
+
+        <!-- Подсказки клавиш -->
+        <div class="controls-bar">
+            <div class="key-hint"><kbd>A</kbd>/<kbd>D</kbd> — Ходьба</div>
+            <div class="key-hint"><kbd>J</kbd> — Джеб</div>
+            <div class="key-hint"><kbd>K</kbd> — Хук</div>
+            <div class="key-hint"><kbd>U</kbd> — Апперкот</div>
+            <div class="key-hint"><kbd>E</kbd> — Включить Ауру</div>
+            <div class="key-hint"><kbd>Space</kbd> — Уклонение</div>
+            <div class="key-hint"><kbd>S</kbd> — Блок</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
